@@ -21,16 +21,22 @@
 <main>
   <div class="wrap">
 <h1>論文筆記</h1>
-<p class="intro">由 AI agent 依照 <a href="https://github.com/OWNER/REPO/blob/main/AGENTS.md">AGENTS.md</a> 規則整理的論文筆記。每篇搭配原文圖片解說，實驗數字皆標註原文出處。共 1 篇。</p>
+<p class="intro">由 AI agent 依照 <a href="https://github.com/OWNER/REPO/blob/main/AGENTS.md">AGENTS.md</a> 規則整理的論文筆記。每篇搭配原文圖片解說，實驗數字皆標註原文出處。共 2 篇。</p>
 <div class="controls">
 <input id="q" type="search" placeholder="搜尋標題、作者、摘要、標籤…" aria-label="搜尋">
 <div class="filters">
-<div class="filter-row"><span class="group">篩選</span><div><button class="filter on" data-tag="">全部<span class="count">1</span></button></div></div>
-<div class="filter-row"><span class="group">研究領域</span><div><button class="filter" data-tag="penetration-testing">滲透測試<span class="count">1</span></button></div></div><div class="filter-row"><span class="group">技術方法</span><div><button class="filter" data-tag="llm-agent">LLM 代理人<span class="count">1</span></button><button class="filter" data-tag="rag">RAG 檢索增強生成<span class="count">1</span></button><button class="filter" data-tag="multi-agent">多代理人<span class="count">1</span></button></div></div><div class="filter-row"><span class="group">論文類型</span><div><button class="filter" data-tag="benchmark">Benchmark 評測基準<span class="count">1</span></button></div></div>
+<div class="filter-row"><span class="group">篩選</span><div><button class="filter on" data-tag="">全部<span class="count">2</span></button></div></div>
+<div class="filter-row"><span class="group">研究領域</span><div><button class="filter" data-tag="penetration-testing">滲透測試<span class="count">2</span></button></div></div><div class="filter-row"><span class="group">技術方法</span><div><button class="filter" data-tag="llm-agent">LLM 代理人<span class="count">2</span></button><button class="filter" data-tag="rag">RAG 檢索增強生成<span class="count">2</span></button><button class="filter" data-tag="multi-agent">多代理人<span class="count">2</span></button></div></div><div class="filter-row"><span class="group">論文類型</span><div><button class="filter" data-tag="benchmark">Benchmark 評測基準<span class="count">1</span></button></div></div>
 </div>
 </div>
 <ul class="paper-list" id="list">
-<li data-tags="penetration-testing llm-agent multi-agent rag benchmark" data-search="pentestagent pentestagent: incorporating llm agents to automated penetration testing asia ccs &#x27;25 xiangmin shen lingzhi wang zhenyuan li yan chen wencheng zhao dawei sun jiashui wang wei ruan pentestagent 讓四個 llm agent 分工完成滲透測試的「偵察 → 漏洞分析 → 漏洞利用」，並自動上網搜尋 cve 與 exploit、存成知識庫，補足 llm 本身資安知識的不足；在 67 個 vulhub 漏洞環境上，使用 gpt-4 時整體成功率為 74.2%（§4.2）。 penetration-testing llm-agent multi-agent rag benchmark 滲透測試 llm 代理人 多代理人 rag 檢索增強生成 benchmark 評測基準">
+<li data-tags="penetration-testing llm-agent multi-agent rag" data-search="vulnbot vulnbot: autonomous penetration testing for a multi-agent collaborative framework arxiv he kong die hu jingguo ge liangxiong li tong li bingzhen wu vulnbot 把滲透測試拆成「偵察→掃描→入侵」三個專職階段，分別交給不同角色的 llm 代理人負責，並用「滲透任務圖」（ptg）規劃任務執行順序、用 summarizer 在階段之間傳遞摘要；在 autopenbench 上，vulnbot 搭配開源的 llama3.1-405b 整體完成率達 30.30%，優於 gpt-4o 的 21.21% 與原始 llama3.1-405b 的 9.09%（table 2），搭配 rag 後更在一台真實機器上做到完整的端對端自動滲透（§5.4）。 penetration-testing llm-agent multi-agent rag 滲透測試 llm 代理人 多代理人 rag 檢索增強生成">
+<a class="pt" href="notes/2025-kong-vulnbot.html">VulnBot</a>
+<div class="full">VulnBot: Autonomous Penetration Testing for A Multi-Agent Collaborative Framework</div>
+<div class="meta">He Kong et al. · arXiv · 精讀</div>
+<p class="one">VulnBot 把滲透測試拆成「偵察→掃描→入侵」三個專職階段，分別交給不同角色的 LLM 代理人負責，並用「滲透任務圖」（PTG）規劃任務執行順序、用 Summarizer 在階段之間傳遞摘要；在 AUTOPENBENCH 上，VulnBot 搭配開源的 Llama3.1-405B 整體完成率達 30.30%，優於 GPT-4o 的 21.21% 與原始 Llama3.1-405B 的 9.09%（Table 2），搭配 RAG 後更在一台真實機器上做到完整的端對端自動滲透（§5.4）。</p>
+<div><span class="tag">滲透測試</span><span class="tag">LLM 代理人</span><span class="tag">多代理人</span><span class="tag">RAG 檢索增強生成</span></div>
+</li><li data-tags="penetration-testing llm-agent multi-agent rag benchmark" data-search="pentestagent pentestagent: incorporating llm agents to automated penetration testing asia ccs &#x27;25 xiangmin shen lingzhi wang zhenyuan li yan chen wencheng zhao dawei sun jiashui wang wei ruan pentestagent 讓四個 llm agent 分工完成滲透測試的「偵察 → 漏洞分析 → 漏洞利用」，並自動上網搜尋 cve 與 exploit、存成知識庫，補足 llm 本身資安知識的不足；在 67 個 vulhub 漏洞環境上，使用 gpt-4 時整體成功率為 74.2%（§4.2）。 penetration-testing llm-agent multi-agent rag benchmark 滲透測試 llm 代理人 多代理人 rag 檢索增強生成 benchmark 評測基準">
 <a class="pt" href="notes/2025-shen-pentestagent.html">PentestAgent</a>
 <div class="full">PentestAgent: Incorporating LLM Agents to Automated Penetration Testing</div>
 <div class="meta">Xiangmin Shen et al. · ASIA CCS &#x27;25 · 精讀</div>

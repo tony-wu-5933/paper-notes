@@ -1,5 +1,29 @@
 [
   {
+    "slug": "2025-kong-vulnbot",
+    "short": "VulnBot",
+    "title": "VulnBot: Autonomous Penetration Testing for A Multi-Agent Collaborative Framework",
+    "year": 2025,
+    "venue": "arXiv",
+    "tags": [
+      "penetration-testing",
+      "llm-agent",
+      "multi-agent",
+      "rag"
+    ],
+    "status": "精讀",
+    "summary": "VulnBot 把滲透測試拆成「偵察→掃描→入侵」三個專職階段，分別交給不同角色的 LLM 代理人負責，並用「滲透任務圖」（PTG）規劃任務執行順序、用 Summarizer 在階段之間傳遞摘要；在 AUTOPENBENCH 上，VulnBot 搭配開源的 Llama3.1-405B 整體完成率達 30.30%，優於 GPT-4o 的 21.21% 與原始 Llama3.1-405B 的 9.09%（Table 2），搭配 RAG 後更在一台真實機器上做到完整的端對端自動滲透（§5.4）。",
+    "date_read": "2026-11-16",
+    "authors": [
+      "He Kong",
+      "Die Hu",
+      "Jingguo Ge",
+      "Liangxiong Li",
+      "Tong Li",
+      "Bingzhen Wu"
+    ]
+  },
+  {
     "slug": "2025-shen-pentestagent",
     "short": "PentestAgent",
     "title": "PentestAgent: Incorporating LLM Agents to Automated Penetration Testing",
