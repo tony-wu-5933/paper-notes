@@ -1,4 +1,4 @@
-"""build.py 與 check.py 共用的工具函式。"""
+"""build.py 與 check.py 共用的設定與工具函式。"""
 from pathlib import Path
 import re
 
@@ -9,27 +9,36 @@ NOTES_DIR = ROOT / "notes"
 PAGES_DIR = ROOT / "pages"
 LAYOUT_DIR = ROOT / "layout"
 DATA_DIR = ROOT / "data"
+ASSETS_DIR = ROOT / "assets"
+FIG_DIR = ASSETS_DIR / "figures"
 OUT_DIR = ROOT / "docs"
 
 FRONT_MATTER_RE = re.compile(r"\A---\s*\n(.*?)\n---\s*\n(.*)\Z", re.S)
+# ![圖說](路徑 "出處")
+IMAGE_RE = re.compile(r'!\[([^\]]*)\]\(\s*([^\s)]+)(?:\s+"([^"]*)")?\s*\)')
 
-# 章節標題（順序固定）。第 6 節只有在 front matter 有 purpose 時才出現。
+# 章節標題（順序固定，見 AGENTS.md 6.1）。第 6 節只有在 front matter 有 purpose 時才出現。
 SECTIONS = [
     "一句話摘要",
     "1. 問題與動機",
-    "2. 方法",
-    "3. 實驗",
-    "4. 貢獻",
+    "2. 貢獻",
+    "3. 方法",
+    "4. 實驗",
     "5. 限制",
     "6. 與我研究的關聯",
     "7. 關鍵名詞",
     "8. BibTeX",
 ]
 OPTIONAL_SECTION = "6. 與我研究的關聯"
+METHOD_SECTION = "3. 方法"
+EXPERIMENT_SECTION = "4. 實驗"
+LIMIT_SECTION = "5. 限制"
 SUBSECTIONS = {
-    "3. 實驗": ["設定", "結果"],
-    "5. 限制": ["作者自述", "我的觀察"],
+    EXPERIMENT_SECTION: ["設定", "結果"],
+    LIMIT_SECTION: ["作者自述", "我的觀察"],
 }
+REQUIRED_TAG_GROUPS = ["研究領域", "技術方法"]
+FIG_EXPLAIN = "**怎麼看這張圖：**"
 
 
 def read_markdown(path: Path):
@@ -45,7 +54,9 @@ def read_markdown(path: Path):
 
 
 def load_tags():
-    return yaml.safe_load((DATA_DIR / "tags.yml").read_text(encoding="utf-8")) or {}
+    """回傳 (groups: list[str], tags: dict[key -> {label, group}])。"""
+    data = yaml.safe_load((DATA_DIR / "tags.yml").read_text(encoding="utf-8")) or {}
+    return data.get("groups", []), data.get("tags", {})
 
 
 def split_sections(body: str):
@@ -63,6 +74,10 @@ def split_sections(body: str):
     if title is not None:
         sections.append((title, "\n".join(buf)))
     return sections
+
+
+def is_open_license(meta) -> bool:
+    return str(meta.get("license", "")).strip().upper().startswith("CC")
 
 
 def note_paths():

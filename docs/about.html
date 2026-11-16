@@ -21,9 +21,9 @@
 <main>
   <div class="wrap">
 <h1>關於本專案</h1>
-<h2>這是什麼</h2>
-<p>一個用 AI agent 整理論文筆記的網站。每篇筆記都由 AI 依照同一份規則文件 <a href="https://github.com/OWNER/REPO/blob/main/AGENTS.md">AGENTS.md</a> 產生，所以格式一致、實驗數字都標有原文出處，可以快速對照不同論文。</p>
-<h2>運作方式</h2>
+<h2 id="這是什麼">這是什麼</h2>
+<p>一個用 AI agent 整理論文筆記的網站。每篇筆記都由 AI 依照同一份規則文件 <a href="https://github.com/OWNER/REPO/blob/main/AGENTS.md">AGENTS.md</a> 產生，所以格式一致、搭配原文圖片解說、實驗數字都標有原文出處。目標是讀者不看原文，只讀筆記就能理解七、八成。</p>
+<h2 id="運作方式">運作方式</h2>
 <pre><code>論文（arXiv 連結 / PDF / 網頁）
         │
         ▼
@@ -35,18 +35,19 @@ scripts/check.py 檢查規則（欄位、標籤、出處、章節順序）
         ▼
 scripts/build.py 產生靜態網頁 → GitHub Pages 發布
 </code></pre>
-<h2>新增一篇筆記</h2>
+<h2 id="新增一篇筆記">新增一篇筆記</h2>
 <p>把 PDF 放進 <code>inbox/</code>（或準備 arXiv 連結），對 AI agent 說：</p>
 <pre><code>依照 AGENTS.md 整理 inbox/xxx.pdf，我想看它的評估方法
 </code></pre>
 <p>AI 會自動：</p>
 <ol>
 <li>讀取全文；讀不到全文時停下來詢問，不憑記憶撰寫</li>
-<li>依命名規則建立筆記，填好 front matter 與固定的 8 個章節</li>
+<li>用 <code>scripts/pdf_figure.py</code> 擷取原文圖片（論文須有開放授權）</li>
+<li>依命名規則建立筆記，填好 front matter 與固定的 8 個章節，每張圖附「怎麼看這張圖」解說</li>
 <li>為實驗數字標上 Table / Fig. / § 出處，自己的推論標 <code><span class="supplement">補充</span></code></li>
 <li>執行檢查與建置，首頁列表自動更新</li>
 </ol>
-<h2>規則重點</h2>
+<h2 id="規則重點">規則重點</h2>
 <table>
 <thead>
 <tr>
@@ -56,8 +57,20 @@ scripts/build.py 產生靜態網頁 → GitHub Pages 發布
 </thead>
 <tbody>
 <tr>
-<td>固定 8 個章節與順序</td>
+<td>固定 8 個章節與順序，自動產生目錄</td>
 <td>不同論文可以直接對照</td>
+</tr>
+<tr>
+<td>不限字數、名詞首次出現就解釋</td>
+<td>只讀筆記就能懂七、八成</td>
+</tr>
+<tr>
+<td>每張圖必須附「怎麼看這張圖」</td>
+<td>圖片是用來解說，不是裝飾</td>
+</tr>
+<tr>
+<td>只有 CC 開放授權的論文才放原圖</td>
+<td>尊重版權</td>
 </tr>
 <tr>
 <td>實驗數字必須標出處</td>
@@ -68,7 +81,7 @@ scripts/build.py 產生靜態網頁 → GitHub Pages 發布
 <td>區分作者說法與個人看法</td>
 </tr>
 <tr>
-<td>標籤只能用 <code>data/tags.yml</code> 中的</td>
+<td>標籤只能用 <code>data/tags.yml</code> 中的，並分組</td>
 <td>避免同義標籤氾濫，篩選才有用</td>
 </tr>
 <tr>
@@ -81,7 +94,7 @@ scripts/build.py 產生靜態網頁 → GitHub Pages 發布
 </tr>
 </tbody>
 </table>
-<h2>網站風格</h2>
+<h2 id="網站風格">網站風格</h2>
 <p>白底黑字、單欄、不使用外部字型與套件。</p>
   </div>
 </main>

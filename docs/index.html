@@ -21,18 +21,21 @@
 <main>
   <div class="wrap">
 <h1>論文筆記</h1>
-<p class="intro">由 AI agent 依照 <a href="https://github.com/OWNER/REPO/blob/main/AGENTS.md">AGENTS.md</a> 規則整理的論文筆記。每篇格式固定、實驗數字皆標註原文出處。共 1 篇。</p>
+<p class="intro">由 AI agent 依照 <a href="https://github.com/OWNER/REPO/blob/main/AGENTS.md">AGENTS.md</a> 規則整理的論文筆記。每篇搭配原文圖片解說，實驗數字皆標註原文出處。共 1 篇。</p>
 <div class="controls">
-<input id="q" type="search" placeholder="搜尋標題、作者、摘要…" aria-label="搜尋">
-<div><button class="filter on" data-tag="">全部</button><button class="filter" data-tag="benchmark" title="提出或使用評測基準">benchmark</button><button class="filter" data-tag="llm-agent" title="LLM 代理人（具工具使用能力的 LLM 系統）">llm-agent</button><button class="filter" data-tag="multi-agent" title="多代理人協作架構">multi-agent</button><button class="filter" data-tag="penetration-testing" title="滲透測試">penetration-testing</button><button class="filter" data-tag="rag" title="檢索增強生成（Retrieval-Augmented Generation）">rag</button></div>
+<input id="q" type="search" placeholder="搜尋標題、作者、摘要、標籤…" aria-label="搜尋">
+<div class="filters">
+<div class="filter-row"><span class="group">篩選</span><div><button class="filter on" data-tag="">全部<span class="count">1</span></button></div></div>
+<div class="filter-row"><span class="group">研究領域</span><div><button class="filter" data-tag="penetration-testing">滲透測試<span class="count">1</span></button></div></div><div class="filter-row"><span class="group">技術方法</span><div><button class="filter" data-tag="llm-agent">LLM 代理人<span class="count">1</span></button><button class="filter" data-tag="rag">RAG 檢索增強生成<span class="count">1</span></button><button class="filter" data-tag="multi-agent">多代理人<span class="count">1</span></button></div></div><div class="filter-row"><span class="group">論文類型</span><div><button class="filter" data-tag="benchmark">Benchmark 評測基準<span class="count">1</span></button></div></div>
+</div>
 </div>
 <ul class="paper-list" id="list">
-<li data-tags="llm-agent multi-agent penetration-testing rag benchmark" data-search="pentestagent pentestagent: incorporating llm agents to automated penetration testing asia ccs &#x27;25 xiangmin shen lingzhi wang zhenyuan li yan chen wencheng zhao dawei sun jiashui wang wei ruan pentestagent 用四個 llm agent 分工完成偵察、漏洞分析與利用，並以線上搜尋＋rag 補足 llm 的滲透測試知識；在 67 個 vulhub 目標上，gpt-4 backbone 的整體成功率為 74.2%（§4.2）。 llm-agent multi-agent penetration-testing rag benchmark">
+<li data-tags="penetration-testing llm-agent multi-agent rag benchmark" data-search="pentestagent pentestagent: incorporating llm agents to automated penetration testing asia ccs &#x27;25 xiangmin shen lingzhi wang zhenyuan li yan chen wencheng zhao dawei sun jiashui wang wei ruan pentestagent 讓四個 llm agent 分工完成滲透測試的「偵察 → 漏洞分析 → 漏洞利用」，並自動上網搜尋 cve 與 exploit、存成知識庫，補足 llm 本身資安知識的不足；在 67 個 vulhub 漏洞環境上，使用 gpt-4 時整體成功率為 74.2%（§4.2）。 penetration-testing llm-agent multi-agent rag benchmark 滲透測試 llm 代理人 多代理人 rag 檢索增強生成 benchmark 評測基準">
 <a class="pt" href="notes/2025-shen-pentestagent.html">PentestAgent</a>
 <div class="full">PentestAgent: Incorporating LLM Agents to Automated Penetration Testing</div>
 <div class="meta">Xiangmin Shen et al. · ASIA CCS &#x27;25 · 精讀</div>
-<p class="one">PentestAgent 用四個 LLM agent 分工完成偵察、漏洞分析與利用，並以線上搜尋＋RAG 補足 LLM 的滲透測試知識；在 67 個 VulHub 目標上，GPT-4 backbone 的整體成功率為 74.2%（§4.2）。</p>
-<div><span class="tag">llm-agent</span><span class="tag">multi-agent</span><span class="tag">penetration-testing</span><span class="tag">rag</span><span class="tag">benchmark</span></div>
+<p class="one">PentestAgent 讓四個 LLM agent 分工完成滲透測試的「偵察 → 漏洞分析 → 漏洞利用」，並自動上網搜尋 CVE 與 exploit、存成知識庫，補足 LLM 本身資安知識的不足；在 67 個 VulHub 漏洞環境上，使用 GPT-4 時整體成功率為 74.2%（§4.2）。</p>
+<div><span class="tag">滲透測試</span><span class="tag">LLM 代理人</span><span class="tag">多代理人</span><span class="tag">RAG 檢索增強生成</span><span class="tag">Benchmark 評測基準</span></div>
 </li>
 </ul>
 <p class="empty" id="empty">沒有符合條件的筆記。</p>
@@ -69,7 +72,8 @@
     btns.forEach(function (b) { b.classList.toggle('on', b.dataset.tag === tag); });
   }
   btns.forEach(function (b) { b.addEventListener('click', function () {
-    tag = b.dataset.tag; history.replaceState(null, '', tag ? '#tag=' + tag : location.pathname); apply();
+    tag = (tag === b.dataset.tag) ? '' : b.dataset.tag;
+    history.replaceState(null, '', tag ? '#tag=' + tag : location.pathname); apply();
   }); });
   q.addEventListener('input', apply);
   var m = location.hash.match(/^#tag=(.+)$/); if (m) tag = decodeURIComponent(m[1]);

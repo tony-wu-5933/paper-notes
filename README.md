@@ -1,7 +1,7 @@
 # Paper Notes 論文筆記庫
 
 用 AI agent 整理論文筆記的靜態網站。所有規則寫在 [`AGENTS.md`](./AGENTS.md)，
-AI 讀完後就能用同一套格式持續新增筆記：結構固定、實驗數字都標出處、自己的推論另外標記。
+AI 讀完後就能用同一套格式持續新增筆記：結構固定、搭配原文圖片解說、實驗數字都標出處、自己的推論另外標記。
 
 - 網站：`https://<你的帳號>.github.io/paper-notes/`
 - 規則：[`AGENTS.md`](./AGENTS.md)（[`CLAUDE.md`](./CLAUDE.md) 指向它）
@@ -21,7 +21,7 @@ AI 讀完後就能用同一套格式持續新增筆記：結構固定、實驗�
 ## 手動建置
 
 ```bash
-pip install markdown pyyaml
+pip install markdown pyyaml pymupdf   # pymupdf 用於擷取 PDF 圖片
 python3 scripts/check.py   # 規則檢查
 python3 scripts/build.py   # 產生 docs/
 ```
@@ -32,7 +32,8 @@ python3 scripts/build.py   # 產生 docs/
 |---|---|
 | `notes/` | 論文筆記（每篇一個 Markdown） |
 | `templates/paper-note.md` | 筆記模板 |
-| `data/tags.yml` | 允許的標籤 |
+| `data/tags.yml` | 允許的標籤（中文名稱與分組） |
+| `assets/figures/` | 每篇筆記的圖片 |
 | `layout/` | 網頁外觀（白底黑字單欄） |
 | `scripts/` | 檢查與建置腳本 |
 | `docs/` | 建置輸出，GitHub Pages 從這裡發布 |

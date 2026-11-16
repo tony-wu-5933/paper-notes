@@ -1,11 +1,27 @@
-# 允許使用的標籤。新增標籤：先加在這裡（key: 中文說明），再到筆記中使用。
-llm-agent: LLM 代理人（具工具使用能力的 LLM 系統）
-multi-agent: 多代理人協作架構
-penetration-testing: 滲透測試
-rag: 檢索增強生成（Retrieval-Augmented Generation）
-benchmark: 提出或使用評測基準
-prompt-engineering: 提示詞設計技巧
-vulnerability-analysis: 漏洞分析
-ctf: Capture The Flag 題目
-reinforcement-learning: 強化學習
-survey: 綜述論文
+# 允許使用的標籤清單（規則見 AGENTS.md 第 5 節）
+#
+# groups：首頁篩選按鈕的分組，依此順序顯示
+# tags：每個標籤需有 label（中文顯示名稱）與 group（所屬分組，必須是上面 groups 之一）
+# 新增標籤：先在這裡加上，再到筆記中使用。key 一律小寫 kebab-case。
+
+groups:
+  - 研究領域
+  - 技術方法
+  - 論文類型
+
+tags:
+  # 研究領域
+  penetration-testing: { label: 滲透測試, group: 研究領域 }
+  vulnerability-analysis: { label: 漏洞分析, group: 研究領域 }
+  ctf: { label: CTF 解題, group: 研究領域 }
+
+  # 技術方法
+  llm-agent: { label: LLM 代理人, group: 技術方法 }
+  multi-agent: { label: 多代理人, group: 技術方法 }
+  rag: { label: RAG 檢索增強生成, group: 技術方法 }
+  prompt-engineering: { label: 提示詞設計, group: 技術方法 }
+  reinforcement-learning: { label: 強化學習, group: 技術方法 }
+
+  # 論文類型
+  benchmark: { label: Benchmark 評測基準, group: 論文類型 }
+  survey: { label: 綜述, group: 論文類型 }
