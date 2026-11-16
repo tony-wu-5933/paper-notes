@@ -1,0 +1,11 @@
+# 允許使用的標籤。新增標籤：先加在這裡（key: 中文說明），再到筆記中使用。
+llm-agent: LLM 代理人（具工具使用能力的 LLM 系統）
+multi-agent: 多代理人協作架構
+penetration-testing: 滲透測試
+rag: 檢索增強生成（Retrieval-Augmented Generation）
+benchmark: 提出或使用評測基準
+prompt-engineering: 提示詞設計技巧
+vulnerability-analysis: 漏洞分析
+ctf: Capture The Flag 題目
+reinforcement-learning: 強化學習
+survey: 綜述論文

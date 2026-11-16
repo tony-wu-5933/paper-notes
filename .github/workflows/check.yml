@@ -1,0 +1,17 @@
+# 每次 push 自動檢查筆記是否符合 AGENTS.md 規則，並確認 docs/ 已重新建置
+name: check-notes
+on: [push, pull_request]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install markdown pyyaml
+      - run: python3 scripts/check.py
+      - name: docs/ 必須與筆記同步
+        run: |
+          python3 scripts/build.py
+          git diff --exit-code -- docs/ || (echo "docs/ 未更新，請先執行 python3 scripts/build.py" && exit 1)

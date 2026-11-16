@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paper Notes — 論文筆記</title>
+<meta name="description" content="AI agent 依規則整理的論文筆記">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="site-title" href="index.html">Paper Notes</a>
+    <nav class="site-nav">
+      <a href="index.html">論文列表</a>
+      <a href="about.html">關於</a>
+      <a href="https://github.com/OWNER/REPO" data-repo-link>GitHub</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+<h1>論文筆記</h1>
+<p class="intro">由 AI agent 依照 <a href="https://github.com/OWNER/REPO/blob/main/AGENTS.md">AGENTS.md</a> 規則整理的論文筆記。每篇格式固定、實驗數字皆標註原文出處。共 1 篇。</p>
+<div class="controls">
+<input id="q" type="search" placeholder="搜尋標題、作者、摘要…" aria-label="搜尋">
+<div><button class="filter on" data-tag="">全部</button><button class="filter" data-tag="benchmark" title="提出或使用評測基準">benchmark</button><button class="filter" data-tag="llm-agent" title="LLM 代理人（具工具使用能力的 LLM 系統）">llm-agent</button><button class="filter" data-tag="multi-agent" title="多代理人協作架構">multi-agent</button><button class="filter" data-tag="penetration-testing" title="滲透測試">penetration-testing</button><button class="filter" data-tag="rag" title="檢索增強生成（Retrieval-Augmented Generation）">rag</button></div>
+</div>
+<ul class="paper-list" id="list">
+<li data-tags="llm-agent multi-agent penetration-testing rag benchmark" data-search="pentestagent pentestagent: incorporating llm agents to automated penetration testing asia ccs &#x27;25 xiangmin shen lingzhi wang zhenyuan li yan chen wencheng zhao dawei sun jiashui wang wei ruan pentestagent 用四個 llm agent 分工完成偵察、漏洞分析與利用，並以線上搜尋＋rag 補足 llm 的滲透測試知識；在 67 個 vulhub 目標上，gpt-4 backbone 的整體成功率為 74.2%（§4.2）。 llm-agent multi-agent penetration-testing rag benchmark">
+<a class="pt" href="notes/2025-shen-pentestagent.html">PentestAgent</a>
+<div class="full">PentestAgent: Incorporating LLM Agents to Automated Penetration Testing</div>
+<div class="meta">Xiangmin Shen et al. · ASIA CCS &#x27;25 · 精讀</div>
+<p class="one">PentestAgent 用四個 LLM agent 分工完成偵察、漏洞分析與利用，並以線上搜尋＋RAG 補足 LLM 的滲透測試知識；在 67 個 VulHub 目標上，GPT-4 backbone 的整體成功率為 74.2%（§4.2）。</p>
+<div><span class="tag">llm-agent</span><span class="tag">multi-agent</span><span class="tag">penetration-testing</span><span class="tag">rag</span><span class="tag">benchmark</span></div>
+</li>
+</ul>
+<p class="empty" id="empty">沒有符合條件的筆記。</p>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    Paper Notes · <a href="about.html">這個網站如何產生</a>
+  </div>
+</footer>
+<script>
+/* GitHub Pages 網址為 <user>.github.io/<repo>/，由此推算 repo 位置，免得寫死帳號 */
+(function () {
+  var h = location.hostname, m = h.match(/^([^.]+)\.github\.io$/);
+  if (!m) return;
+  var repo = m[1] + '/' + (location.pathname.split('/')[1] || (m[1] + '.github.io'));
+  document.querySelectorAll('a[href*="OWNER/REPO"]').forEach(function (a) {
+    a.href = a.getAttribute('href').replace('OWNER/REPO', repo);
+  });
+})();
+</script>
+<script>
+(function () {
+  var q = document.getElementById('q'), items = document.querySelectorAll('#list li'),
+      btns = document.querySelectorAll('.filter'), empty = document.getElementById('empty'), tag = '';
+  function apply() {
+    var kw = q.value.trim().toLowerCase(), n = 0;
+    items.forEach(function (li) {
+      var ok = (!tag || li.dataset.tags.split(' ').indexOf(tag) >= 0) &&
+               (!kw || li.dataset.search.indexOf(kw) >= 0);
+      li.style.display = ok ? '' : 'none'; if (ok) n++;
+    });
+    empty.style.display = n ? 'none' : 'block';
+    btns.forEach(function (b) { b.classList.toggle('on', b.dataset.tag === tag); });
+  }
+  btns.forEach(function (b) { b.addEventListener('click', function () {
+    tag = b.dataset.tag; history.replaceState(null, '', tag ? '#tag=' + tag : location.pathname); apply();
+  }); });
+  q.addEventListener('input', apply);
+  var m = location.hash.match(/^#tag=(.+)$/); if (m) tag = decodeURIComponent(m[1]);
+  apply();
+})();
+</script>
+</body>
+</html>

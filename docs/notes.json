@@ -1,0 +1,29 @@
+[
+  {
+    "slug": "2025-shen-pentestagent",
+    "short": "PentestAgent",
+    "title": "PentestAgent: Incorporating LLM Agents to Automated Penetration Testing",
+    "year": 2025,
+    "venue": "ASIA CCS '25",
+    "tags": [
+      "llm-agent",
+      "multi-agent",
+      "penetration-testing",
+      "rag",
+      "benchmark"
+    ],
+    "status": "精讀",
+    "summary": "PentestAgent 用四個 LLM agent 分工完成偵察、漏洞分析與利用，並以線上搜尋＋RAG 補足 LLM 的滲透測試知識；在 67 個 VulHub 目標上，GPT-4 backbone 的整體成功率為 74.2%（§4.2）。",
+    "date_read": "2026-11-16",
+    "authors": [
+      "Xiangmin Shen",
+      "Lingzhi Wang",
+      "Zhenyuan Li",
+      "Yan Chen",
+      "Wencheng Zhao",
+      "Dawei Sun",
+      "Jiashui Wang",
+      "Wei Ruan"
+    ]
+  }
+]

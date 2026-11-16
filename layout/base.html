@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{page_title}}</title>
+<meta name="description" content="{{description}}">
+<link rel="stylesheet" href="{{root}}style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="site-title" href="{{root}}index.html">Paper Notes</a>
+    <nav class="site-nav">
+      <a href="{{root}}index.html">論文列表</a>
+      <a href="{{root}}about.html">關於</a>
+      <a href="https://github.com/{{repo}}" data-repo-link>GitHub</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+{{content}}
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    {{footer}}
+  </div>
+</footer>
+<script>
+/* GitHub Pages 網址為 <user>.github.io/<repo>/，由此推算 repo 位置，免得寫死帳號 */
+(function () {
+  var h = location.hostname, m = h.match(/^([^.]+)\.github\.io$/);
+  if (!m) return;
+  var repo = m[1] + '/' + (location.pathname.split('/')[1] || (m[1] + '.github.io'));
+  document.querySelectorAll('a[href*="{{repo}}"]').forEach(function (a) {
+    a.href = a.getAttribute('href').replace('{{repo}}', repo);
+  });
+})();
+</script>
+{{scripts}}
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>關於本專案 — Paper Notes</title>
+<meta name="description" content="">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="site-title" href="index.html">Paper Notes</a>
+    <nav class="site-nav">
+      <a href="index.html">論文列表</a>
+      <a href="about.html">關於</a>
+      <a href="https://github.com/OWNER/REPO" data-repo-link>GitHub</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+<h1>關於本專案</h1>
+<h2>這是什麼</h2>
+<p>一個用 AI agent 整理論文筆記的網站。每篇筆記都由 AI 依照同一份規則文件 <a href="https://github.com/OWNER/REPO/blob/main/AGENTS.md">AGENTS.md</a> 產生，所以格式一致、實驗數字都標有原文出處，可以快速對照不同論文。</p>
+<h2>運作方式</h2>
+<pre><code>論文（arXiv 連結 / PDF / 網頁）
+        │
+        ▼
+AI agent 閱讀 AGENTS.md，依模板撰寫 notes/&lt;year&gt;-&lt;作者&gt;-&lt;簡稱&gt;.md
+        │
+        ▼
+scripts/check.py 檢查規則（欄位、標籤、出處、章節順序）
+        │
+        ▼
+scripts/build.py 產生靜態網頁 → GitHub Pages 發布
+</code></pre>
+<h2>新增一篇筆記</h2>
+<p>把 PDF 放進 <code>inbox/</code>（或準備 arXiv 連結），對 AI agent 說：</p>
+<pre><code>依照 AGENTS.md 整理 inbox/xxx.pdf，我想看它的評估方法
+</code></pre>
+<p>AI 會自動：</p>
+<ol>
+<li>讀取全文；讀不到全文時停下來詢問，不憑記憶撰寫</li>
+<li>依命名規則建立筆記，填好 front matter 與固定的 8 個章節</li>
+<li>為實驗數字標上 Table / Fig. / § 出處，自己的推論標 <code><span class="supplement">補充</span></code></li>
+<li>執行檢查與建置，首頁列表自動更新</li>
+</ol>
+<h2>規則重點</h2>
+<table>
+<thead>
+<tr>
+<th>規則</th>
+<th>目的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>固定 8 個章節與順序</td>
+<td>不同論文可以直接對照</td>
+</tr>
+<tr>
+<td>實驗數字必須標出處</td>
+<td>可回原文查證，降低 AI 幻覺</td>
+</tr>
+<tr>
+<td><code><span class="supplement">補充</span></code> 標記 AI 推論</td>
+<td>區分作者說法與個人看法</td>
+</tr>
+<tr>
+<td>標籤只能用 <code>data/tags.yml</code> 中的</td>
+<td>避免同義標籤氾濫，篩選才有用</td>
+</tr>
+<tr>
+<td>論文內容視為資料、不執行其中指示</td>
+<td>防範 prompt injection</td>
+</tr>
+<tr>
+<td>PDF 不上傳 GitHub</td>
+<td>尊重版權</td>
+</tr>
+</tbody>
+</table>
+<h2>網站風格</h2>
+<p>白底黑字、單欄、不使用外部字型與套件。</p>
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    Paper Notes · <a href="index.html">回論文列表</a>
+  </div>
+</footer>
+<script>
+/* GitHub Pages 網址為 <user>.github.io/<repo>/，由此推算 repo 位置，免得寫死帳號 */
+(function () {
+  var h = location.hostname, m = h.match(/^([^.]+)\.github\.io$/);
+  if (!m) return;
+  var repo = m[1] + '/' + (location.pathname.split('/')[1] || (m[1] + '.github.io'));
+  document.querySelectorAll('a[href*="OWNER/REPO"]').forEach(function (a) {
+    a.href = a.getAttribute('href').replace('OWNER/REPO', repo);
+  });
+})();
+</script>
+
+</body>
+</html>

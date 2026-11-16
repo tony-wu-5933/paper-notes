@@ -1,0 +1,82 @@
+/* Paper Notes — 白底黑字、單欄、精簡。規則見 AGENTS.md 第 8 節 */
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: #fff;
+  color: #111;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC",
+               "PingFang TC", "Microsoft JhengHei", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.wrap { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+
+/* 導覽列 */
+.site-header { border-bottom: 1px solid #ddd; }
+.site-header .wrap { display: flex; justify-content: space-between; align-items: baseline; padding-top: 18px; padding-bottom: 14px; }
+.site-title { font-weight: 700; font-size: 17px; text-decoration: none; color: #111; }
+.site-nav a { margin-left: 18px; font-size: 14px; color: #555; }
+
+main { padding: 32px 0 56px; }
+
+a { color: #111; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+
+h1 { font-size: 26px; line-height: 1.35; margin: 0 0 12px; }
+h2 { font-size: 19px; margin: 40px 0 10px; padding-bottom: 4px; border-bottom: 1px solid #eee; }
+h3 { font-size: 16px; margin: 22px 0 6px; }
+p { margin: 8px 0; }
+ul, ol { padding-left: 1.3em; margin: 8px 0; }
+li { margin: 4px 0; }
+strong { font-weight: 700; }
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.88em;
+  background: #f5f5f5;
+  padding: 1px 4px;
+}
+pre { background: #f7f7f7; border: 1px solid #e5e5e5; padding: 12px 14px; overflow-x: auto; line-height: 1.5; }
+pre code { background: none; padding: 0; font-size: 13px; }
+
+blockquote { margin: 12px 0; padding: 0 0 0 14px; border-left: 3px solid #ccc; color: #444; }
+
+table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 15px; }
+th, td { border-bottom: 1px solid #e5e5e5; padding: 6px 8px; text-align: left; vertical-align: top; }
+th { border-bottom: 1px solid #111; font-weight: 700; }
+
+/* 筆記頁標頭 */
+.meta { color: #555; font-size: 14px; line-height: 1.6; margin: 0 0 6px; }
+.meta a { color: #555; }
+.tags { margin: 10px 0 0; }
+.tag { display: inline-block; font-size: 13px; color: #555; border: 1px solid #ccc; padding: 0 7px; margin: 0 6px 6px 0; line-height: 1.7; }
+.note-head { border-bottom: 1px solid #111; padding-bottom: 16px; margin-bottom: 8px; }
+.supplement { color: #666; font-size: 0.85em; border: 1px solid #ccc; padding: 0 4px; margin-right: 4px; }
+
+/* 首頁 */
+.intro { color: #444; margin-bottom: 24px; }
+.controls { margin: 0 0 16px; }
+#q { width: 100%; font: inherit; font-size: 15px; padding: 7px 10px; border: 1px solid #bbb; background: #fff; color: #111; margin-bottom: 10px; }
+#q:focus { outline: 1px solid #111; }
+.filter { font: inherit; font-size: 13px; color: #555; background: #fff; border: 1px solid #ccc; padding: 0 8px; margin: 0 6px 6px 0; cursor: pointer; line-height: 1.8; }
+.filter.on { color: #fff; background: #111; border-color: #111; }
+.paper-list { list-style: none; padding: 0; margin: 0; }
+.paper-list li { border-top: 1px solid #e5e5e5; padding: 14px 0; margin: 0; }
+.paper-list li:last-child { border-bottom: 1px solid #e5e5e5; }
+.paper-list .pt { font-weight: 700; font-size: 17px; }
+.paper-list .full { color: #444; font-size: 14px; margin: 2px 0; }
+.paper-list .one { font-size: 15px; margin: 4px 0 6px; }
+.empty { color: #888; display: none; }
+
+.site-footer { border-top: 1px solid #ddd; color: #888; font-size: 13px; }
+.site-footer .wrap { padding-top: 16px; padding-bottom: 28px; }
+.site-footer a { color: #888; }
+
+@media print {
+  .site-header, .site-footer, .controls { display: none; }
+  main { padding: 0; }
+}
